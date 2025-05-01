@@ -1,26 +1,45 @@
-import { Box, Flex, Grid, GridItem, HStack, Show } from "@chakra-ui/react";
-import { useState } from "react";
-import "./App.css";
+import { Grid, GridItem, Show } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
+import "./App.css";
+import ColorModeSwitch from "./components/ColorModeSwitch";
+import GameGrid from "./components/GameGrid";
 
 function App() {
   return (
     <Grid
-      templateAreas={{ base: `"nav" "main"`, lg: `"nav nav" "aside main"` }}
+      templateAreas={{
+        base: `"nav" "main"`,
+        lg: `"nav nav" "aside main"`,
+      }}
       templateColumns={{
-        base: '1fr',
-        lg: '250px 1fr'
+        base: "1fr",
+        lg: "250px 1fr",
       }}
     >
-      <GridItem area="nav">
+      {/* NavBar */}
+      <GridItem
+        area="nav"
+        padding="2"
+        boxShadow="md"
+       
+      >
+        
         <NavBar />
       </GridItem>
-      <Show when={true}>
-        <GridItem area="aside">
-          Aside
-        </GridItem>
-      </Show>
-      <GridItem area="main">Main</GridItem>
+
+      {/* Aside - hidden on small screens */}
+      <GridItem
+        area="aside"
+        
+        padding="2"
+        display={{ base: "none", lg: "block" }}
+      >
+        Aside
+      </GridItem>
+      {/* Main */}
+      <GridItem area="main"  padding="2">
+      <GameGrid/>
+      </GridItem>
     </Grid>
   );
 }
