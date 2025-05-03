@@ -14,7 +14,7 @@ const GameGrid = () => {
         columns={{ sm: 1, md: 2, lg: 3, xl: 3, xlTo2xl: 5 }}
         padding={10}
         gap={10}
-        spaceY={10}
+        
       >
         {isLoading && //to render the skeletons only (glassy effect when it is loaded)
           Sekeletons.map((skeleton) => (
