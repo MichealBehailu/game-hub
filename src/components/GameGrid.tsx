@@ -2,6 +2,7 @@ import useGames from "@/hooks/useGames";
 import { Text, SimpleGrid, Card, Skeleton } from "@chakra-ui/react";
 import GameCard from "./GameCard";
 import GameCardSkeleton from "./GameCardSkeleton";
+import GameCardContainer from "./GameCardContainer";
 
 const GameGrid = () => {
   const { games, error, isLoading } = useGames(); //this is my custom hook that returns games error and isLoading
@@ -16,9 +17,15 @@ const GameGrid = () => {
         spaceY={10}
       >
         {isLoading && //to render the skeletons only (glassy effect when it is loaded)
-          Sekeletons.map((skeleton) => <GameCardSkeleton key={skeleton} />)}
+          Sekeletons.map((skeleton) => (
+            <GameCardContainer>
+              <GameCardSkeleton key={skeleton} />
+            </GameCardContainer>
+          ))}
         {games.map((game) => (
-          <GameCard key={game.id} game={game} />
+          <GameCardContainer>
+            <GameCard key={game.id} game={game} />
+          </GameCardContainer>
         ))}
       </SimpleGrid>
     </>
