@@ -3,6 +3,7 @@ import NavBar from "./components/NavBar";
 import "./App.css";
 import ColorModeSwitch from "./components/ColorModeSwitch";
 import GameGrid from "./components/GameGrid";
+import GenreList from "./components/GenreList";
 
 function App() {
   return (
@@ -17,28 +18,21 @@ function App() {
       }}
     >
       {/* NavBar */}
-      <GridItem
-        area="nav"
-        padding="2"
-        boxShadow="md"
-       
-      >
-        
+      <GridItem area="nav" padding="2" boxShadow="md">
         <NavBar />
       </GridItem>
 
       {/* Aside - hidden on small screens */}
       <GridItem
         area="aside"
-        
         padding="2"
         display={{ base: "none", lg: "block" }}
       >
-        Aside
+        <GenreList/>
       </GridItem>
       {/* Main */}
-      <GridItem area="main"  padding="2">
-      <GameGrid/>
+      <GridItem area="main" padding="2">
+        <GameGrid />
       </GridItem>
     </Grid>
   );
