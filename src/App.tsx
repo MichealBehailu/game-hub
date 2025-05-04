@@ -14,7 +14,7 @@ function App() {
       }}
       templateColumns={{
         base: "1fr",
-        lg: "250px 1fr",
+        lg: "200px 1fr",
       }}
     >
       {/* NavBar */}
@@ -26,7 +26,9 @@ function App() {
       <GridItem
         area="aside"
         padding="2"
+        marginX={0.5}
         display={{ base: "none", lg: "block" }}
+        marginY={7}
       >
         <GenreList/>
       </GridItem>
