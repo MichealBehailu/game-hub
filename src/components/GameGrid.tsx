@@ -5,7 +5,7 @@ import GameCardSkeleton from "./GameCardSkeleton";
 import GameCardContainer from "./GameCardContainer";
 
 const GameGrid = () => {
-  const { games, error, isLoading } = useGames(); //this is my custom hook that returns games error and isLoading
+  const { data, error, isLoading } = useGames(); //this is my custom hook that returns games error and isLoading
   const Sekeletons = [1, 2, 3, 4, 5, 6]; //just to render the sekeletons
   return (
     <>
@@ -22,7 +22,7 @@ const GameGrid = () => {
               <GameCardSkeleton key={skeleton} />
             </GameCardContainer>
           ))}
-        {games.map((game) => (
+        {data.map((game) => (
           <GameCardContainer>
             <GameCard key={game.id} game={game} />
           </GameCardContainer>
