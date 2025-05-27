@@ -5,9 +5,10 @@ import GenreSkeletons from "./GenreSkeletons";
 
 interface Props{
   onSelectGenre : (genre : Genre)=>void;
+  selectedGenre : Genre | null; //we use this to make the selected genre to be bold or not 
 }
 
-const GenreList = ({onSelectGenre}:Props) => {
+const GenreList = ({onSelectGenre, selectedGenre}:Props) => {
   const { data,isLoading} = useGeners();
   const skeletons = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]
   return (
@@ -25,12 +26,12 @@ const GenreList = ({onSelectGenre}:Props) => {
               src={getCroppedImageUrl(genre.image_background)}
               borderRadius={8}
             />
-            <Button onClick={()=>onSelectGenre(genre)} fontSize={'lg'} variant={'plain'}>
+            <Button fontWeight={genre.id === selectedGenre?.id ? 'bold' : 'normal'} onClick={()=>onSelectGenre(genre)} fontSize={'lg'} variant={'plain'}>
               {genre.name}
             </Button>
           </HStack>
         </List.Item>
-      ))}
+    ))}
     </List.Root>
     </>
   );

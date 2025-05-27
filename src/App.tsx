@@ -7,7 +7,7 @@ import { Genre } from "./hooks/useGeners";
 import { useState } from "react";
 
 function App() {
-  const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null)
+  const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null) //this used for rendring games using genre 
   return (
     <Grid
       templateAreas={{
@@ -32,7 +32,7 @@ function App() {
         display={{ base: "none", lg: "block" }}
         marginY={7}
       >
-        <GenreList onSelectGenre={(genre) =>setSelectedGenre(genre)}/>
+        <GenreList selectedGenre={selectedGenre} onSelectGenre={(genre) =>setSelectedGenre(genre)}/>
       </GridItem>
       {/* Main */}
       <GridItem area="main" padding="2">
