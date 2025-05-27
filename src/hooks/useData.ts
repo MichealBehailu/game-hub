@@ -1,5 +1,5 @@
 import apiClient from '@/Service/api-client';
-import { CanceledError } from 'axios';
+import { AxiosRequestConfig, CanceledError } from 'axios';
 import { useEffect, useState } from 'react'
 
 interface FetchResponse<T>{
@@ -7,17 +7,16 @@ interface FetchResponse<T>{
     results:T[]
 }
 
-const useData = <T>(endpoint:string) => { 
+const useData = <T>(endpoint:string, requestConfig ?: AxiosRequestConfig, deps?:any[] ) => { 
           const [data, setData] = useState<T[]>([]);
           const [error, setError] = useState("");
           const [isLoading, setLoading] = useState(false);
         
           useEffect(() => {
-            const controller = new AbortController();
-        
+            const controller = new AbortController(); //The `controller` is an instance of `AbortController`. It is used to **cancel the API request** if the component unmounts or if the effect is cleaned up before the request finishes.
             setLoading(true);
             apiClient
-              .get<FetchResponse<T>>(endpoint, { signal: controller.signal })
+              .get<FetchResponse<T>>(endpoint, { signal: controller.signal, ...requestConfig })
               .then((res) => {
                 setData(res.data.results);
                 setLoading(false);
@@ -29,7 +28,7 @@ const useData = <T>(endpoint:string) => {
               });
         
             return () => controller.abort(); //clean up code
-          }, []);
+          }, deps?[...deps]:[]);
         
           return { data, error, isLoading };
     

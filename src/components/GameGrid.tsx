@@ -3,9 +3,13 @@ import { Text, SimpleGrid, Card, Skeleton } from "@chakra-ui/react";
 import GameCard from "./GameCard";
 import GameCardSkeleton from "./GameCardSkeleton";
 import GameCardContainer from "./GameCardContainer";
+import { Genre } from "@/hooks/useGeners";
 
-const GameGrid = () => {
-  const { data, error, isLoading } = useGames(); //this is my custom hook that returns games error and isLoading
+interface Props{
+  selectedGenre :Genre | null ;
+}
+const GameGrid = ({selectedGenre}:Props) => {
+  const { data, error, isLoading } = useGames(selectedGenre); //this is my custom hook that returns games error and isLoading
   const Sekeletons = [1, 2, 3, 4, 5, 6]; //just to render the sekeletons
   return (
     <>
@@ -18,13 +22,13 @@ const GameGrid = () => {
       >
         {isLoading && //to render the skeletons only (glassy effect when it is loaded)
           Sekeletons.map((skeleton) => (
-            <GameCardContainer>
-              <GameCardSkeleton key={skeleton} />
+            <GameCardContainer key={skeleton}>
+              <GameCardSkeleton />
             </GameCardContainer>
           ))}
         {data.map((game) => (
-          <GameCardContainer>
-            <GameCard key={game.id} game={game} />
+          <GameCardContainer key={game.id}>
+            <GameCard  game={game} />
           </GameCardContainer>
         ))}
       </SimpleGrid>
