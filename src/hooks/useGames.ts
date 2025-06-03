@@ -18,6 +18,11 @@ export interface Game {
 
 
 
-const useGames = (selectedGenre:Genre | null) => useData<Game>('/games', {params:{genres: selectedGenre?.id}}, [selectedGenre?.id]);
+const useGames = (selectedGenre:Genre | null,selectedPlatform:Platform | null) => useData<Game>('/games', {
+  params:{
+    genres: selectedGenre?.id, //this is simply means /genres/{id} the same for the below too
+    platforms:selectedPlatform?.id //  /platforms/{id}
+  }},
+  [selectedGenre?.id,selectedPlatform?.id]);
 
 export default useGames;
