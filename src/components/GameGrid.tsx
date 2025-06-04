@@ -4,13 +4,14 @@ import GameCard from "./GameCard";
 import GameCardSkeleton from "./GameCardSkeleton";
 import GameCardContainer from "./GameCardContainer";
 import { Genre } from "@/hooks/useGeners";
+import { GameQuery } from "@/App";
 
-interface Props{
-  selectedGenre :Genre | null ;
-  selectedPlatform:Platform | null;
+interface Props {
+  gameQuery: GameQuery;
 }
-const GameGrid = ({selectedGenre,selectedPlatform}:Props) => {
-  const { data, error, isLoading } = useGames(selectedGenre,selectedPlatform); //this is my custom hook that returns games error and isLoading
+
+const GameGrid = ({gameQuery}: Props) => {
+  const { data, error, isLoading } = useGames(gameQuery); //this is my custom hook that returns games error and isLoading
   const Sekeletons = [1, 2, 3, 4, 5, 6]; //just to render the sekeletons
   return (
     <>
@@ -19,7 +20,6 @@ const GameGrid = ({selectedGenre,selectedPlatform}:Props) => {
         columns={{ sm: 1, md: 2, lg: 3, xl: 3, xlTo2xl: 5 }}
         padding={10}
         gap={7}
-        
       >
         {isLoading && //to render the skeletons only (glassy effect when it is loaded)
           Sekeletons.map((skeleton) => (
@@ -29,7 +29,7 @@ const GameGrid = ({selectedGenre,selectedPlatform}:Props) => {
           ))}
         {data.map((game) => (
           <GameCardContainer key={game.id}>
-            <GameCard  game={game} />
+            <GameCard game={game} />
           </GameCardContainer>
         ))}
       </SimpleGrid>
