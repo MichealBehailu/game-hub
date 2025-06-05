@@ -1,6 +1,7 @@
+import noImage from '../assets/no-image.webp'
 
 const getCroppedImageUrl = (url:string)=>{
-    if(!url) return ''; //this is for handling games with out image 
+    if(!url) return noImage; //this is for handling games with out image 
     const target = 'media/';
     const index = url.indexOf(target) + target.length
 
