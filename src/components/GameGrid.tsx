@@ -17,9 +17,9 @@ const GameGrid = ({gameQuery}: Props) => {
     <>
       {error && <Text>{error}</Text>}{" "}
       <SimpleGrid
-        columns={{ sm: 1, md: 2, lg: 3, xl: 3, xlTo2xl: 5 }}
+        columns={{ sm: 1, md: 2, lg: 3, xl: 4, xlTo2xl: 4 }}
         padding={10}
-        gap={7}
+        gap={6}
       >
         {isLoading && //to render the skeletons only (glassy effect when it is loaded)
           Sekeletons.map((skeleton) => (
