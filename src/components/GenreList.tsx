@@ -1,5 +1,5 @@
 import useGeners, { Genre } from "@/hooks/useGeners";
-import { List, ListItem, HStack, Image,Text, Spinner, Skeleton, Button, Link } from "@chakra-ui/react";
+import { List, ListItem, HStack, Image,Text, Spinner, Skeleton, Button, Link, Heading } from "@chakra-ui/react";
 import getCroppedImageUrl from "./image-url";
 import GenreSkeletons from "./GenreSkeletons";
 
@@ -16,7 +16,7 @@ const GenreList = ({onSelectGenre, selectedGenre}:Props) => {
     {/* {isLoading && <Spinner/> //for the genre skeleton} */}
     {/* {error && null} //we dont need to show error on the side panel */}
     {isLoading && skeletons.map(Skeleton=><GenreSkeletons key={Skeleton}></GenreSkeletons>)}
-
+    <Heading fontSize="2xl" marginBottom={3}>Genres</Heading>
     <List.Root>
       {data.map((genre) => (
         <List.Item key={genre.id} paddingY={'5px'}>
@@ -25,8 +25,9 @@ const GenreList = ({onSelectGenre, selectedGenre}:Props) => {
               boxSize={"32px"}
               src={getCroppedImageUrl(genre.image_background)}
               borderRadius={8}
+              objectFit='cover'
             />
-            <Button fontWeight={genre.id === selectedGenre?.id ? 'bold' : 'normal'} onClick={()=>onSelectGenre(genre)} fontSize={'lg'} variant={'plain'}>
+            <Button paddingLeft={0} whiteSpace='normal' textAlign="left" fontWeight={genre.id === selectedGenre?.id ? 'bold' : 'normal'} onClick={()=>onSelectGenre(genre)} fontSize={'lg'} variant={'plain'}>
               {genre.name}
             </Button>
           </HStack>
