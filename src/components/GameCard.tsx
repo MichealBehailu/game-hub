@@ -1,7 +1,7 @@
-import React from "react";
+
 import PlatformIconList from "./PlatformIconList";
 import { Game } from "@/hooks/useGames";
-import { Card, HStack, Heading, Image, Text } from "@chakra-ui/react";
+import { Card, HStack, Heading, Image } from "@chakra-ui/react";
 import CriticScore from "./CriticScore";
 import getCroppedImageUrl from "./image-url";
 import Emoji from "./Emoji";
