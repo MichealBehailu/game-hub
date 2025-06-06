@@ -14,7 +14,8 @@ export interface GameQuery { //instead of selectedGenre or selectedPlatform we c
   genre : Genre | null;
   platform : Platform | null;
   sortOrder : string,
-  searchText :string
+  searchText :string,
+  rating_top:number
 }
 
 function App() {
